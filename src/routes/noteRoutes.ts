@@ -4,7 +4,7 @@ import { createNote, deleteNote, getAllNotes, getNoteById, searchNote, shareNote
 
 const router: Router = Router()
 
-// routes fro current user
+// routes for current user
 router.get('/', getAllNotes)
 
 router.get('/search', [], searchNote)
