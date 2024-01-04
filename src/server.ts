@@ -6,6 +6,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import helmet from 'helmet'
 import compression from 'compression'
+import { rateLimit } from 'express-rate-limit'
 import NotFoundRoute from './middlewares/notFoundHandler'
 import loadRoutes from './routes'
 import connectMongo from './configs/mongo'
@@ -15,6 +16,15 @@ dotenv.config()
 
 const app: Application = express()
 
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    limit: 100, // limit each IP to 100 requests per 'window' (here, per 15 minutes)
+    standardHeaders: 'draft-7', // draft-7: combined 'RateLimit' header
+    legacyHeaders: false, // Disable the 'X-RateLimit-*' headers
+    message: 'Too many requests, please try again later.',
+})
+
+app.use(limiter)
 app.use(cors())
 app.use(express.json())
 app.use(helmet())
