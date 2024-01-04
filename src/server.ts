@@ -55,3 +55,5 @@ app.listen(port, async () => {
     await connectMongo(process.env.MONGO_URI as string)
     console.log(`Server is listening at http://localhost:${port}`)
 })
+
+export = app
