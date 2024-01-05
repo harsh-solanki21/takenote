@@ -19,9 +19,12 @@ export const signupUser = async (req: Request, res: Response) => {
         throw new BadRequest('Passwords do not match')
     }
 
-    await _createUser(req.body)
+    const user_id = await _createUser(req.body)
 
-    res.status(200).json({ message: 'User created Successfully' })
+    res.status(201).json({
+        user_id: user_id,
+        message: 'User created Successfully',
+    })
 }
 
 export const loginUser = async (req: Request, res: Response) => {
