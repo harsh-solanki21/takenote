@@ -11,7 +11,18 @@
 
 <br />
 
-## Run this app locally
+
+## Features of takenote App
+-    Custom Error Handling
+-    Seperation of Business logic and Data logic
+-    ESlint configuration for making code more consistent and avoiding bugs
+-    Proper validation for each route
+-    Unit tests and Integration tests for each route
+
+<br />
+
+
+## Run this App and Tests locally
 
 -   Make sure you have `nodejs v20` and `pnpm v8` package manager is installed
 
@@ -25,3 +36,5 @@
 
 -   Runs the app in the development mode. Open below links to view logs.
     -   [http://localhost:5000](http://localhost:5000)
+
+-   Run `pnpm run test` to run all the tests.
