@@ -14,7 +14,7 @@ export const _getUserByEmail = async (email: string) => {
 export const _createUser = async (user_data: IUser) => {
     try {
         const user: IUser = await User.create(user_data)
-        return user
+        return user._id
     } catch (error: any) {
         throw new BadRequest(error.message)
     }
