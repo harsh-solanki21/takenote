@@ -1,4 +1,4 @@
-import mongoose, { ConnectOptions } from 'mongoose'
+import mongoose from 'mongoose'
 mongoose.set('strictQuery', false)
 
 const connectMongo = async (mongo_uri: string) => {
