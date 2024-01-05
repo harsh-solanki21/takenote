@@ -1,18 +1,21 @@
 import request from 'supertest'
 import app from '../src/server'
+import { Types } from 'mongoose'
 
 describe('Notes Tests', () => {
     let createdNoteId: number
 
     test('POST /notes should create a new note', async () => {
-        const response = await request(app).post('/api/notes/create').send({
-            title: 'The test note',
-            body: 'The content for the test note',
-        })
+        const response = await request(app)
+            .post('http://localhost:5000/api/notes/create')
+            .send({
+                title: 'The test note',
+                body: 'The content for the test note',
+                owner: new Types.ObjectId('6597d2232b4f4f5170db96f4'),
+            })
 
         expect(response.status).toBe(200)
         expect(response.body.message).toBe('Note created successfully')
-
         createdNoteId = response.body.id // saving ID for later use in update and delete tests
     })
 
@@ -32,7 +35,7 @@ describe('Notes Tests', () => {
         const response = await request(app)
             .post(`/api/notes/${createdNoteId}/share`)
             .send({
-                share_with: [],
+                share_with: [new Types.ObjectId('6597d2232b4f4f5170db96f4')],
             })
 
         expect(response.status).toBe(200)
